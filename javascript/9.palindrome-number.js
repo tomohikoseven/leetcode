@@ -10,10 +10,14 @@
  * @return {boolean}
  */
 var isPalindrome = function (x) {
-  let input = x.toString(10);
-  let reverse = input.split("").reverse().join("");
+  let xAry = x.toString().split("");
 
-  return input == reverse;
+  while (xAry.length > 1) {
+    if (xAry.shift() != xAry.pop()) {
+      return false;
+    }
+  }
+  return true;
 };
 exports.isPalindrome = isPalindrome;
 // @lc code=end
