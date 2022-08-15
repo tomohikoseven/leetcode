@@ -18,17 +18,12 @@ const romanSymbols = {
  * @return {number}
  */
 var romanToInt = function (s) {
-  let romanAry = s.split("");
   let answer = 0;
 
-  for (let i = 0; i < romanAry.length - 1; i++) {
-    if (romanSymbols[romanAry[i]] < romanSymbols[romanAry[i + 1]]) {
-      answer -= romanSymbols[romanAry[i]];
-    } else {
-      answer += romanSymbols[romanAry[i]];
-    }
+  for (let i = 0; i < s.length; i++) {
+    let diff = romanSymbols[s[i]] < romanSymbols[s[i + 1]];
+    diff ? answer -= romanSymbols[s[i]] : answer += romanSymbols[s[i]];
   }
-  answer += romanSymbols[romanAry[romanAry.length - 1]];
 
   return answer;
 };
