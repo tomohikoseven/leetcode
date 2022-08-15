@@ -3,65 +3,32 @@
  *
  * [13] Roman to Integer
  */
-
 // @lc code=start
+const romanSymbols = {
+  'I': 1,
+  'V': 5,
+  'X': 10,
+  'L': 50,
+  'C': 100,
+  'D': 500,
+  'M': 1000,
+}
 /**
  * @param {string} s
  * @return {number}
  */
 var romanToInt = function (s) {
+  let romanAry = s.split("");
   let answer = 0;
-  let cnt = 0;
-  while (s.substring(0, 1) == "M") {
-    s = s.slice(1);
-    answer += 1000;
-  }
-  if (s.substring(0, 2) == "CM") {
-    s = s.slice(2);
-    answer += 900;
-  }
-  while (s.substring(0, 1) == "D") {
-    s = s.slice(1);
-    answer += 500;
-  }
-  if (s.substring(0, 2) == "CD") {
-    s = s.slice(2);
-    answer += 400;
-  }
-  while (s.substring(0, 1) == "C") {
-    s = s.slice(1);
-    answer += 100;
-  }
-  if (s.substring(0, 2) == "XC") {
-    s = s.slice(2);
-    answer += 90;
-  }
-  while (s.substring(0, 1) == "L") {
-    s = s.slice(1);
-    answer += 50;
-  }
-  if (s.substring(0, 2) == "XL") {
-    s = s.slice(2);
-    answer += 40;
-  }
-  while (s.substring(0, 1) == "X") {
-    s = s.slice(1);
-    answer += 10;
-  }
-  if (s.substring(0, 2) == "IX") {
-    s = s.slice(2);
-    answer += 9;
-  }
-  while (s.substring(0, 1) == "V") {
-    s = s.slice(1);
-    answer += 5;
-  }
-  if (s.substring(0, 2) == "IV") {
-    s = s.slice(2);
-    answer += 4;
-  }
 
-  answer += s.length;
+  for (let i = 0; i < romanAry.length - 1; i++) {
+    if (romanSymbols[romanAry[i]] < romanSymbols[romanAry[i + 1]]) {
+      answer -= romanSymbols[romanAry[i]];
+    } else {
+      answer += romanSymbols[romanAry[i]];
+    }
+  }
+  answer += romanSymbols[romanAry[romanAry.length - 1]];
 
   return answer;
 };
