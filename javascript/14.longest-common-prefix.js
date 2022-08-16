@@ -15,7 +15,7 @@ var longestCommonPrefix = function (strs) {
 
   const strslength = strs.map(x => x.length);
   // 比較すればよい最大の文字数.
-  const strsMaxLength = Math.max(...strslength);
+  const strsMaxLength = Math.min(...strslength);
 
   let ans = strs[0].substring(0, strsMaxLength);
   for (let i = strsMaxLength; i >= 0; i--) {
