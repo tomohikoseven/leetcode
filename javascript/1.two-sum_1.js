@@ -11,23 +11,19 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-  let numsIdxMap = {};
-  let ans = 0;
 
-  numsIdxMap[nums[0]] = 0;
+  let map = {};
 
-  for (let i = 1; i < nums.length; i++) {
-    ans = target - nums[i];
+  for (let i = 0; i < nums.length; i++) {
+    const another = target - nums[i];
 
-    if (ans in numsIdxMap) {
-      return [numsIdxMap[ans], i];
+    if (another in map) {
+      return [map[another], i]
     }
 
-    numsIdxMap[nums[i]] = i;
+    map[nums[i]] = i;
   }
-
   return null;
 };
-exports.twoSum = twoSum;
 // @lc code=end
 
