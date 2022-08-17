@@ -11,17 +11,20 @@
  * @return {number[]}
  */
 var twoSum = function (nums, target) {
-  let map = new Map();
+  let numsIdxMap = {};
 
-  for (let i = 0; i < nums.length; i++) {
-    if (map.has(target - nums[i])) {
-      return [map.get(target - nums[i]), i];
+  numsIdxMap[nums[0]] = 0;
+
+  for (let i = 1; i < nums.length; i++) {
+
+    if (target - nums[i] in numsIdxMap) {
+      return [numsIdxMap[target - nums[i]], i];
     }
-    else {
-      map.set(nums[i], i);
-    }
+
+    numsIdxMap[nums[i]] = i;
   }
-  return [];
+
+  return null;
 };
 exports.twoSum = twoSum;
 // @lc code=end
