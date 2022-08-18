@@ -5,44 +5,28 @@
  */
 
 // @lc code=start
-var matchCnt = function (str, match) {
-  const re = new RegExp(match, 'g')
-  return (str.match(re) || []).length;
-}
 /**
  * @param {string} s
  * @return {boolean}
  */
 var isValid = function (s) {
-  /*
-   * 左右のカッコの数が一致していない場合は、不正なカッコである。
-  */
-  const leftParentheseCnt = matchCnt(s, '\\(');
-  const rightParentheseCnt = matchCnt(s, '\\)');
-  if (leftParentheseCnt != rightParentheseCnt) return false;
+  const parentheses = '\\(\\)';
+  const brackets = '\\[\\]';
+  const braces = '\\{\\}';
 
-  const leftBracketCnt = matchCnt(s, '\\[');
-  const rightBracketCnt = matchCnt(s, '\\]');
-  console.log(leftBracketCnt);
-  console.log(rightBracketCnt);
-  if (leftBracketCnt != rightBracketCnt) return false;
+  const pattern = parentheses + '|' +
+    brackets + '|' +
+    braces;
+  const re = new RegExp(pattern);
 
-  const leftBraceCnt = matchCnt(s, '\\[');
-  const rightBraceCnt = matchCnt(s, '\\]');
-  if (leftBraceCnt != rightBraceCnt) return false;
-
-  /*
-   * 不正なカッコのパターンが含まれている場合、不正なカッコである。
-  */
-  const ngPatterns = ["\\(\\]", "\\(\\}", "\\[\\)", "\\[\\}", "\\{\\)", "\\{\\]"];
-  for (let i = 0; i < ngPatterns.length; i++) {
-    let re = new RegExp(ngPatterns[i]);
-    if (re.test(s)) return false;
+  while (re.test(s)) {
+    s = s.split("()").join('');
+    s = s.split("[]").join('');
+    s = s.split("{}").join('');
   }
 
-  return true;
+  return s.length == 0;
 };
 exports.isValid = isValid;
-exports.matchCnt = matchCnt;
 // @lc code=end
 

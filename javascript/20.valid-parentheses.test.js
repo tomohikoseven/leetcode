@@ -16,9 +16,6 @@ describe("No.20 test.", () => {
   test("(()) is true.", () => {
     expect(isValid("(())")).toBe(true);
   });
-  test("(){}}{ is true.", () => {
-    expect(isValid("(){}}{")).toBe(true);
-  });
   // ---
   // NG
   // ---
@@ -30,6 +27,9 @@ describe("No.20 test.", () => {
   });
   test("[ is false.", () => {
     expect(isValid("[")).toBe(false);
+  });
+  test("(){}}{ is false.", () => {
+    expect(isValid("(){}}{")).toBe(false);
   });
 });
 
