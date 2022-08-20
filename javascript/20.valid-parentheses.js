@@ -10,23 +10,25 @@
  * @return {boolean}
  */
 var isValid = function (s) {
-  const parentheses = '\\(\\)';
-  const brackets = '\\[\\]';
-  const braces = '\\{\\}';
+  let stack = [];
 
-  const pattern = parentheses + '|' +
-    brackets + '|' +
-    braces;
-  const re = new RegExp(pattern);
-
-  while (re.test(s)) {
-    s = s.split("()").join('');
-    s = s.split("[]").join('');
-    s = s.split("{}").join('');
+  for (let i = 0; i < s.length; i++) {
+    switch (s[i]) {
+      case '(':
+        stack.push(')');
+        break;
+      case '[':
+        stack.push(']');
+        break;
+      case '{':
+        stack.push('}');
+        break;
+      default:
+        if (stack.pop() != s[i]) return false;
+        break;
+    }
   }
-
-  return s.length == 0;
+  return stack.length == 0;
 };
 exports.isValid = isValid;
 // @lc code=end
-
