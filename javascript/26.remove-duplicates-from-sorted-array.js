@@ -10,10 +10,14 @@
  * @return {number}
  */
 var removeDuplicates = function (nums) {
-  let numsSet = new Set(nums);
-  nums = [...numsSet];
+  let i = 0;
 
-  return numsSet.size;
+  for (let j = 0; j < nums.length; j++) {
+    if (nums[j] != nums[i]) {
+      nums[++i] = nums[j];
+    }
+  }
+  return ++i;
 };
 exports.removeDuplicates = removeDuplicates;
 // @lc code=end
