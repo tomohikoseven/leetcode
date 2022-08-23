@@ -12,14 +12,14 @@
 var removeDuplicates = function (nums) {
   // ポイント:ソート済みであること.
   //         引数numsが関数実行後に検証されること。
-  let numsSet = new Set(nums);
+  const numsSet = new Set(nums);
   let cnt = 0;
 
   for (let val of numsSet) {
     nums[cnt++] = val;
   }
 
-  return cnt;
+  return numsSet.size;
 };
 exports.removeDuplicates = removeDuplicates;
 // @lc code=end
