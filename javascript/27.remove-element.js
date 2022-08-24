@@ -12,12 +12,16 @@
  */
 var removeElement = function (nums, val) {
   // ポイント:関数実行後、引数numsを検証する.
-  for (let i = nums.length - 1; i >= 0; i--) {
-    if (nums[i] == val) {
-      nums.splice(i, 1);
+  //        : 戻り値の数値より大きいnumsのインデックス要素は
+  //          あってもなくてもよい。
+  let idx = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== val) {
+      nums[idx] = nums[i];
+      idx++;
     }
   }
-  return nums.length;
+  return idx;
 };
 exports.removeElement = removeElement;
 // @lc code=end

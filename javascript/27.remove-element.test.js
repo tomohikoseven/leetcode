@@ -9,6 +9,7 @@ describe("No.27 test.", () => {
 
     cnt = removeElement(nums, val);
     expect(cnt).toBe(2);
+    console.log(nums);
     for (let i = 0; i < cnt; i++) {
       expect(nums[i]).toBe(expected[i]);
     }
