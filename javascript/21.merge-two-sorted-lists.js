@@ -18,28 +18,22 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function (list1, list2) {
-  if (list1.val == 0 && list2.val == 0) {
-    return list1;
-  }
-  if (list1.val == 0) {
-    return list2;
-  }
-  if (list2.val == 0) {
-    return list1;
-  }
-  let retList = new ListNode(0, null);
-  while (list1.val || list2.val) {
+  let retNode = new ListNode(0, null);
+  let currNode = retNode;
+
+  while (list1 && list2) {
     if (list1.val <= list2.val) {
-      retList.next = list1;
+      currNode.next = list1;
       list1 = list1.next
     } else {
-      retList.next = list2;
+      currNode.next = list2;
       list2 = list2.next;
     }
-    retList = retList.next;
+    currNode = currNode.next;
   }
+  currNode.next = list1 || list2;
 
-  return retList;
+  return retNode.next;
 };
 exports.mergeTwoLists = mergeTwoLists;
 // @lc code=end
