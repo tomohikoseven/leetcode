@@ -7,6 +7,18 @@ describe("No.28 test.", () => {
     const expected = 2;
     expect(strStr(haystack, needle)).toBe(expected);
   });
+  test("haystack = a, needle = a, return 0.", () => {
+    const haystack = "a";
+    const needle = "a";
+    const expected = 0;
+    expect(strStr(haystack, needle)).toBe(expected);
+  });
+  test("haystack = aaa, needle = aaaa, return -1.", () => {
+    const haystack = "aaa";
+    const needle = "aaaa";
+    const expected = -1;
+    expect(strStr(haystack, needle)).toBe(expected);
+  });
   test("haystack = aaaaa, needle = bba, return -1.", () => {
     const haystack = "aaaaa";
     const needle = "bba";
