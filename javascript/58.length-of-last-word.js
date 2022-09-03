@@ -10,8 +10,12 @@
  * @return {number}
  */
 var lengthOfLastWord = function (s) {
-  const sp = s.split(/(\s+)/).filter(e => e.trim().length > 0);
-  return sp[sp.length - 1].length;
+  const sp = s.split(" ");
+  for (let i = sp.length - 1; i >= 0; i--) {
+    if (sp[i].length !== 0) {
+      return sp[i].length;
+    }
+  }
 };
 // @lc code=end
 
