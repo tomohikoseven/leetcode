@@ -17,12 +17,12 @@ var addBinary = function (a, b) {
     let revA = a.split("").reverse();
     let revB = b.split("").reverse();
     let ret = [];
+    let sum = 0;
 
     while (revA[i] || revB[i]) {
-        const intA = revA[i] ? parseInt(revA[i]) : 0;
-        const intB = revB[i] ? parseInt(revB[i]) : 0;
-        ret.push((intA + intB + carry) % 2);
-        carry = (intA + intB + carry) >= 2 ? 1 : 0;
+        sum = (+revA[i] || 0) + (+revB[i] || 0) + carry;
+        ret.push(sum % 2);
+        carry = sum >= 2 ? 1 : 0;
         i++;
     }
 
