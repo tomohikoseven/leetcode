@@ -13,17 +13,21 @@
 var addBinary = function (a, b) {
 
     let i = 0;
+    let j = 0;
+    const aLen = a.length;
+    const bLen = b.length;
     let carry = 0;
     let revA = a.split("").reverse();
     let revB = b.split("").reverse();
     let ret = [];
     let sum = 0;
 
-    while (revA[i] || revB[i]) {
-        sum = (+revA[i] || 0) + (+revB[i] || 0) + carry;
+    while (i < aLen || j < bLen) {
+        sum = (+revA[i] || 0) + (+revB[j] || 0) + carry;
         ret.push(sum % 2);
         carry = sum >= 2 ? 1 : 0;
         i++;
+        j++;
     }
 
     if (carry == 1)
