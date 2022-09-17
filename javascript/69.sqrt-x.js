@@ -5,23 +5,29 @@
  */
 
 // @lc code=start
-const STOPDIFF = 0.01;
 /**
  * @param {number} x
  * @return {number}
  */
 var mySqrt = function (x) {
-    if (x == 0) return 0;
-    let x0 = x;
-    let diff = 0.1
+    let left = 1;
+    let mid = 0;
+    let right = Math.floor(x / 2) + 1;
+    let mid2 = 0;
 
-    while (diff > STOPDIFF) {
-        x1 = x0 - (x0 * x0 - x) / (2 * x0);
-        diff = Math.abs(x1 - x0);
-
-        x0 = x1;
+    while (left <= right) {
+        mid = Math.floor((left + right) / 2);
+        mid2 = mid * mid;
+        if (mid2 > x) {
+            right = mid - 1;
+        } else if (mid2 < x) {
+            left = mid + 1;
+        } else {
+            return mid;
+        }
     }
-    return Math.floor(x0);
+
+    return right;
 };
 exports.mySqrt = mySqrt;
 // @lc code=end
